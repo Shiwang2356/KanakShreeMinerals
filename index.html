@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanak Shree Minerals | Delivering Minerals. Powering Industries.</title>
+    <!-- 
+        ========================================================================================
+        KANAK SHREE MINERALS - PREMIUM INDUSTRIAL EXPORT PLATFORM
+        VERSION: 18.1.0 (Advanced Mineral Catalogue & Data-Ribbon Metrics)
+        ========================================================================================
+    -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CORE DESIGN TOKENS - REFINED FOR PREMIUM INDUSTRIAL LOOK */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary-black: #0f0f0f;
+            --secondary-slate: #2b2b2b;
+            /* REFINED DARK METALLIC GOLD PALETTE - PREVENTING OVER-SHINE */
+            --accent-gold: #8e6e3c; /* Deep Heritage Gold */
+            --accent-gold-light: #af9655; /* Bronze-Gold */
+            --accent-gold-shine: #d4af37; /* Metallic Highlight */
+            --accent-gold-glow: rgba(142, 110, 60, 0.3);
+            --text-dark: #1a1a1a;
+            --text-grey: #666666;
+            --section-white: #ffffff;
+            --section-light: #f8f9fa;
+            --transition-premium: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--section-white);
+            color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            text-rendering: optimizeLegibility;
+        }
+
+        .heading-font {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        /* LOGO ENTRANCE ANIMATION */
+        @keyframes logoEntrance {
+            0% { opacity: 0; transform: scale(0.9) translateY(-10px); filter: blur(10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        }
+        .logo-animate {
+            animation: logoEntrance 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            will-change: transform, opacity;
+        }
+
+        /* SCROLL REVEAL ENGINE */
+        .reveal {
+            opacity: 0;
+            transform: translate3d(0, 30px, 0);
+            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
+                        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+
+        /* SEQUENTIAL REVEAL DELAYS */
+        .reveal-delay-1 { transition-delay: 0.15s !important; }
+        .reveal-delay-2 { transition-delay: 0.3s !important; }
+        .reveal-delay-3 { transition-delay: 0.45s !important; }
+        .reveal-delay-4 { transition-delay: 0.6s !important; }
+
+        /* PATTERN OVERLAY */
+        .mineral-texture-light {
+            position: relative;
+        }
+        .mineral-texture-light::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+            opacity: 0.02;
+            pointer-events: none;
+        }
+
+        /* HERO CAROUSEL ARCHITECTURE */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+            min-height: 750px;
+            background: #000;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            will-change: opacity;
+        }
+
+        .carousel-slide.active { opacity: 1; z-index: 10; }
+
+        .carousel-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.75) 40%, rgba(0, 0, 0, 0) 100%);
+            z-index: 1;
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;
+            will-change: transform, opacity;
+        }
+
+        .carousel-slide.active .slide-content { opacity: 1; transform: translateX(0); }
+
+        /* PREMIUM GLASS CIRCLE NAVIGATION INDICATORS */
+        .dot-nav {
+            position: absolute;
+            bottom: 40px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 30;
+            display: flex;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 28px;
+            border-radius: 100px;
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+
+        .dot {
+            width: 12px; height: 12px; border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+        }
+
+        .dot.active { 
+            background: var(--accent-gold-light); 
+            border-color: #fff;
+            width: 12px;
+            box-shadow: 0 0 20px var(--accent-gold-glow);
+            transform: scale(1.25);
+        }
+
+        /* UI COMPONENTS - REFINED DARKENED GOLD GRADIENT */
+        .btn-gold {
+            background: linear-gradient(135deg, #8e6e3c 0%, #af9655 50%, #8e6e3c 100%);
+            background-size: 200% auto;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border-radius: 9999px;
+            font-weight: 700;
+            box-shadow: 0 10px 25px -5px rgba(142, 110, 60, 0.3);
+        }
+
+        .btn-gold:hover {
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px -10px rgba(142, 110, 60, 0.4);
+        }
+
+        /* HERO CTA ENHANCEMENTS */
+        .btn-hero-glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+        .btn-hero-glass:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* PRIMARY HERO CTA & NAV BAR SYNC: PREMIUM DARK GOLD */
+        .btn-premium-gold {
+            background: linear-gradient(135deg, #8e6e3c, #af9655);
+            color: #ffffff !important;
+            border-radius: 40px;
+            box-shadow: 0 8px 20px rgba(142, 110, 60, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .btn-premium-gold:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(142, 110, 60, 0.6);
+            background: linear-gradient(135deg, #af9655, #d4af37);
+        }
+
+        .nav-dark {
+            background-color: rgba(15, 15, 15, 0.98);
+            backdrop-filter: blur(25px);
+        }
+
+        /* PERFORMANCE RIBBON STYLING */
+        .metrics-ribbon {
+            background: #ffffff;
+            border-top: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f1f5f9;
+            padding: 30px 0;
+            position: relative;
+            z-index: 10;
+        }
+        .metric-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 0 40px;
+            border-right: 1px solid #e2e8f0;
+        }
+        .metric-item:last-child { border-right: none; }
+        
+        .metric-icon-box {
+            width: 48px;
+            height: 48px;
+            background: var(--section-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* CATALOGUE CARD REFINEMENT */
+        .mineral-card-premium {
+            background: #ffffff;
+            border: 1px solid #eef2f6;
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .mineral-card-premium:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold-light);
+            box-shadow: 0 30px 60px -15px rgba(142, 110, 60, 0.12);
+        }
+        
+        .mineral-card-premium::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0; width: 0; height: 3px;
+            background: var(--accent-gold);
+            transition: width 0.6s ease;
+        }
+        
+        .mineral-card-premium:hover::after {
+            width: 100%;
+        }
+
+        .card-data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 25px 0;
+            padding: 20px 0;
+            border-top: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .data-point span:first-child {
+            display: block;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #94a3b8;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .data-point span:last-child {
+            font-size: 13px;
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* DATA TABLES */
+        .tech-spec-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1px solid #eef2f6;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .tech-spec-table th {
+            background: #f8fafc;
+            color: #1a1a1a;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 11px;
+            padding: 20px;
+            text-align: left;
+            border-bottom: 2px solid #eef2f6;
+        }
+        .tech-spec-table td {
+            padding: 18px 20px;
+            color: #4b5563;
+            font-size: 14px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .tech-spec-table tr:hover td {
+            background: #fdfaf3;
+            color: #1a1a1a;
+        }
+
+        /* APPLICATION CARD ANIMATIONS */
+        .app-card-premium {
+            overflow: hidden;
+            border-radius: 32px;
+            position: relative;
+            background: #ffffff;
+            border: 2px solid #f1f5f9;
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.8s ease, border-color 0.8s ease;
+            height: 100%;
+        }
+
+        .app-card-premium:hover {
+            transform: translateY(-12px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.1);
+        }
+
+        .app-card-img-wrapper {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .app-card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.15) translate3d(0, 15px, 0);
+            opacity: 0;
+            transition: transform 1.5s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 1s ease;
+        }
+
+        .app-card-premium.active .app-card-img-wrapper img {
+            transform: scale(1) translate3d(0, 0, 0);
+            opacity: 1;
+        }
+
+        .app-overlay-content {
+            padding: 25px;
+        }
+
+        .app-overlay-content h4 {
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 10px;
+            color: var(--primary-black);
+        }
+
+        /* CONTACT ENQUIRY ARCHITECTURE */
+        .contact-enquiry-card { 
+            background: #ffffff; 
+            border-radius: 40px; 
+            padding: 60px 50px; 
+            display: grid; 
+            grid-template-columns: 0.7fr 1.3fr; 
+            gap: 60px; 
+            align-items: start; 
+            margin: 0 auto; 
+            max-width: 1200px;
+            width: 100%; 
+            position: relative; 
+            overflow: hidden; 
+            border: 1px solid #eef2f6;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.03);
+        }
+
+        .contact-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .contact-form-grid input, 
+        .contact-form-grid select, 
+        .contact-form-grid textarea {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 16px 20px;
+            color: var(--text-dark);
+            border-radius: 12px;
+            font-size: 14px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            width: 100%;
+        }
+
+        .contact-form-grid input:focus, 
+        .contact-form-grid select:focus, 
+        .contact-form-grid textarea:focus {
+            border-color: var(--accent-gold);
+            background: #ffffff;
+            outline: none;
+            box-shadow: 0 0 20px rgba(142, 110, 60, 0.1);
+        }
+
+        /* PAGE SWITCHING ENGINE */
+        .page-wrapper {
+            transition: opacity 0.5s ease;
+        }
+        .page-hidden { display: none !important; }
+
+        @media (max-width: 1024px) {
+            .contact-enquiry-card { grid-template-columns: 1fr; padding: 40px; gap: 40px; }
+            .metric-item { padding: 0 25px; }
+        }
+
+        @media (max-width: 768px) {
+            .carousel-container { height: 75vh; min-height: 550px; }
+            .carousel-overlay { background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 100%); }
+            .slide-content { padding-top: 100px; padding-bottom: 80px; text-align: left; }
+            .slide-content h1 { font-size: 2.5rem; line-height: 1.1; margin-bottom: 1.25rem; }
+            .slide-content p { font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.75rem; max-width: 100% !important; }
+            .dot-nav { bottom: 20px; transform: translateX(-50%) scale(0.8); }
+            .contact-form-grid { grid-template-columns: 1fr; }
+            .tech-spec-table { display: block; overflow-x: auto; }
+            .metrics-ribbon { padding: 40px 0; }
+            .metrics-ribbon .max-w-7xl { flex-wrap: wrap; justify-content: center; gap: 40px 0; }
+            .metric-item { border-right: none; width: 50%; justify-content: center; padding: 0 10px; }
+            .metric-item:nth-child(even) { border-left: 1px solid #f1f5f9; }
+        }
+    </style>
+</head>
+<body class="selection:bg-gold-500 selection:text-white">
+
+    <!-- GLOBAL NAVIGATION HEADER -->
+    <nav class="fixed w-full z-[100] nav-dark border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 md:h-24">
+                <div class="flex items-center h-full flex-shrink-0">
+                    <a href="javascript:void(0)" onclick="showPage('main-wrapper')" class="flex items-center h-full">
+                        <img src="https://res.cloudinary.com/dslvuduln/image/upload/v1767941015/kanak_shree_minerals_logo-removebg-preview_jlam45.png" 
+                             alt="Logo" class="h-16 sm:h-20 md:h-24 w-auto object-contain py-1 logo-animate hover:scale-105 transition-transform duration-300">
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-3 sm:gap-6">
+                    <div class="hidden lg:flex items-center space-x-6 xl:space-x-8 text-[14px] font-semibold mr-4">
+                        <a href="javascript:void(0)" onclick="showPage('main-wrapper')" class="hover:text-[#af9655] transition-colors text-white">Home</a>
+                        <a href="javascript:void(0)" onclick="showPage('dedicated-about')" class="hover:text-[#af9655] transition-colors text-white">About Us</a>
+                        
+                        <div class="relative group">
+                            <a href="javascript:void(0)" class="hover:text-[#af9655] transition-colors text-white flex items-center gap-1">Products <i class="fa-solid fa-chevron-down text-[8px]"></i></a>
+                            <div class="absolute hidden group-hover:block bg-[#0f0f0f] border border-white/10 top-full left-0 w-60 mt-0 shadow-2xl py-6 z-[100] rounded-b-lg">
+                                <div class="px-8 py-2">
+                                    <p class="text-[#af9655] text-[10px] font-black uppercase mb-3 tracking-[0.2em]">Mica Minerals</p>
+                                    <ul class="space-y-3 mb-6 border-b border-white/5 pb-4">
+                                        <li><a href="javascript:void(0)" onclick="showPage('product-muscovite')" class="text-white/70 hover:text-white transition-colors text-[13px] font-medium tracking-wide">Muscovite Mica</a></li>
+                                        <li><a href="javascript:void(0)" class="text-white/70 hover:text-white transition-colors text-[13px] font-medium tracking-wide">Biotite Mica</a></li>
+                                    </ul>
+                                    <p class="text-[#af9655] text-[10px] font-black uppercase mb-3 tracking-[0.2em]">Industrial Ores</p>
+                                    <ul class="space-y-3">
+                                        <li><a href="javascript:void(0)" onclick="showPage('product-feldspar')" class="text-white/70 hover:text-white transition-colors text-[13px] font-medium tracking-wide">Potash Feldspar</a></li>
+                                        <li><a href="javascript:void(0)" onclick="showPage('product-talc')" class="text-white/70 hover:text-white transition-colors text-[13px] font-medium tracking-wide">Industrial Talc</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="javascript:void(0)" onclick="showPage('main-wrapper', 'process')" class="hover:text-[#af9655] transition-colors text-white">Our Process</a>
+                        <a href="javascript:void(0)" onclick="showPage('main-wrapper', 'certifications-premium')" class="hover:text-[#af9655] transition-colors text-white">Certification</a>
+                    </div>
+
+                    <!-- REFINED UNIFIED DARK GOLD QUOTE BAR -->
+                    <a href="javascript:void(0)" onclick="showPage('main-wrapper', 'contact')" class="px-5 sm:px-8 py-3 sm:py-4 btn-premium-gold text-white text-[12px] transition-all duration-500 tracking-[0.1em] shadow-xl hover:scale-105 active:scale-95">Request Quote</a>
+                    
+                    <div class="lg:hidden">
+                        <button id="mobile-menu-button" class="text-white p-2 focus:outline-none bg-white/5 rounded-full h-12 w-12 flex items-center justify-center">
+                            <i class="fa-solid fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-[#0f0f0f] border-b border-white/5 px-8 py-10 space-y-7 shadow-2xl absolute w-full left-0 transition-all duration-300 max-h-[80vh] overflow-y-auto">
+            <a href="javascript:void(0)" onclick="showPage('main-wrapper')" class="block text-white text-[17px] font-semibold border-b border-white/5 pb-3 text-center">Home Portal</a>
+            <a href="javascript:void(0)" onclick="showPage('dedicated-about')" class="block text-white text-[17px] font-semibold border-b border-white/5 pb-3 text-center">About Us</a>
+            <p class="text-[#af9655] uppercase text-[12px] font-black tracking-[0.3em] text-center">Mineral Catalogue</p>
+            <div class="pl-4 space-y-5 border-b border-white/5 pb-6 text-center">
+                <a href="javascript:void(0)" onclick="showPage('product-muscovite')" class="block text-white/80 text-[15px] font-medium">Muscovite Mica</a>
+                <a href="javascript:void(0)" onclick="showPage('product-feldspar')" class="block text-white/80 text-[15px] font-medium">Potash Feldspar</a>
+                <a href="javascript:void(0)" onclick="showPage('product-biotite')" class="block text-white/80 text-[15px] font-medium">Biotite Mica</a>
+                <a href="javascript:void(0)" onclick="showPage('product-talc')" class="block text-white/80 text-[15px] font-medium">Industrial Talc</a>
+            </div>
+            <a href="javascript:void(0)" onclick="showPage('main-wrapper', 'process')" class="block text-white text-[17px] font-semibold border-b border-white/5 pb-3 text-center">Our Process</a>
+        </div>
+    </nav>
+
+    <!-- MAIN HOME WRAPPER -->
+    <div id="main-wrapper" class="page-wrapper">
+        <!-- Hero Section: CLEAN DIRECT STRUCTURE -->
+        <section id="home" class="carousel-container bg-black">
+            <!-- Slide 1 -->
+            <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1515516089376-88db1e26e9c0?auto=format&fit=crop&w=1920&q=80');">
+                <div class="carousel-overlay"></div>
+                <div class="slide-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-2xl reveal">
+                        <span class="inline-block px-4 py-1.5 bg-[#af9655]/20 text-[#af9655] text-[10px] font-black uppercase tracking-[0.4em] mb-8 rounded-full border border-[#af9655]/30">Rajasthan’s Mineral Heartland</span>
+                        <h1 class="heading-font text-5xl sm:text-7xl text-white mb-8 leading-[1.1] tracking-tighter">Premium Industrial <br>Minerals Supplier from <span class="text-[#af9655]">India.</span></h1>
+                        <p class="text-lg sm:text-xl text-white/80 mb-10 font-light leading-relaxed max-w-xl">ISO 9001:2015 Certified • Global Export Infrastructure • Uncompromising Batch Consistency and Quality Assurance.</p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="javascript:void(0)" onclick="showPage('main-wrapper', 'contact')" class="btn-premium-gold px-12 py-5 text-center uppercase text-[11px] tracking-[0.3em] font-extrabold text-white">Request a Quote</a>
+                            <a href="#products" onclick="showPage('main-wrapper', 'products')" class="btn-hero-glass px-12 py-5 text-white font-bold rounded-full text-center uppercase text-[11px] tracking-[0.3em] shadow-xl">View Products</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=1920&q=80');">
+                <div class="carousel-overlay"></div>
+                <div class="slide-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-2xl reveal">
+                        <span class="inline-block px-4 py-1.5 bg-[#af9655]/20 text-[#af9655] text-[10px] font-black uppercase tracking-[0.4em] mb-8 rounded-full border border-[#af9655]/30">Tier-1 Mining Excellence</span>
+                        <h1 class="heading-font text-5xl sm:text-7xl text-white mb-8 leading-[1.1] tracking-tighter">India's Leading <br>High-Purity Mineral <span class="text-[#af9655]">Exporters.</span></h1>
+                        <p class="text-lg sm:text-xl text-white/80 mb-10 font-light leading-relaxed max-w-xl">ISO 9001:2015 Certified • Trusted in 50+ Nations • Ethical Extraction Directly from Owned Rajasthan Mines.</p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="javascript:void(0)" onclick="showPage('main-wrapper', 'contact')" class="btn-premium-gold px-12 py-5 text-center uppercase text-[11px] tracking-[0.3em] font-extrabold text-white">Initiate Sourcing</a>
+                            <a href="javascript:void(0)" onclick="showPage('dedicated-about')" class="btn-hero-glass px-12 py-5 text-white font-bold rounded-full text-center uppercase text-[11px] tracking-[0.3em] shadow-xl">Our Legacy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1920&q=80');">
+                <div class="carousel-overlay"></div>
+                <div class="slide-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-2xl reveal">
+                        <span class="inline-block px-4 py-1.5 bg-[#af9655]/20 text-[#af9655] text-[10px] font-black uppercase tracking-[0.4em] mb-8 rounded-full border border-[#af9655]/30">Global Delivery Standards</span>
+                        <h1 class="heading-font text-5xl sm:text-7xl text-white mb-8 leading-[1.1] tracking-tighter">Global Standard for <br>Industrial <span class="text-[#af9655]">Minerals.</span></h1>
+                        <p class="text-lg sm:text-xl text-white/80 mb-10 font-light leading-relaxed max-w-xl">ISO 9001:2015 Certified • Advanced Multi-Stage Purification • Consistent Micronized Processing Quality.</p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="javascript:void(0)" onclick="showPage('main-wrapper', 'contact')" class="btn-premium-gold px-12 py-5 text-center uppercase text-[11px] tracking-[0.3em] font-extrabold text-white">Contact Trading Desk</a>
+                            <a href="#products" onclick="showPage('main-wrapper', 'products')" class="btn-hero-glass px-12 py-5 text-white font-bold rounded-full text-center uppercase text-[11px] tracking-[0.3em] shadow-xl">Full Catalogue</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination Indicators -->
+            <div class="dot-nav">
+                <div class="dot active" data-index="0"></div>
+                <div class="dot" data-index="1"></div>
+                <div class="dot" data-index="2"></div>
+            </div>
+        </section>
+
+        <!-- High-Performance Ribbon (Automated Numbers) -->
+        <section id="record" class="metrics-ribbon reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+                <div class="metric-item">
+                    <div class="metric-icon-box"><i class="fa-solid fa-award"></i></div>
+                    <div>
+                        <p class="text-3xl font-black text-slate-900 tracking-tighter leading-none mb-1"><span class="counter" data-target="15">0</span>+</p>
+                        <p class="text-[10px] uppercase tracking-widest text-[#af9655] font-black">Years Expertise</p>
+                    </div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-icon-box"><i class="fa-solid fa-truck-fast"></i></div>
+                    <div>
+                        <p class="text-3xl font-black text-slate-900 tracking-tighter leading-none mb-1"><span class="counter" data-target="500">0</span>+</p>
+                        <p class="text-[10px] uppercase tracking-widest text-[#af9655] font-black">Global Contracts</p>
+                    </div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-icon-box"><i class="fa-solid fa-microscope"></i></div>
+                    <div>
+                        <p class="text-3xl font-black text-slate-900 tracking-tighter leading-none mb-1"><span class="counter" data-target="200">0</span>+</p>
+                        <p class="text-[10px] uppercase tracking-widest text-[#af9655] font-black">Supply Analysts</p>
+                    </div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-icon-box"><i class="fa-solid fa-building-shield"></i></div>
+                    <div>
+                        <p class="text-3xl font-black text-slate-900 tracking-tighter leading-none mb-1"><span class="counter" data-target="5">0</span>+</p>
+                        <p class="text-[10px] uppercase tracking-widest text-[#af9655] font-black">Strategic Hubs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brief About Section -->
+        <section id="about" class="py-12 sm:py-24 bg-white mineral-texture-light reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
+                    <div class="lg:w-1/2 order-2 lg:order-1 pt-6">
+                        <div class="mb-12">
+                            <div class="inline-flex items-center gap-5 mb-12 group cursor-default">
+                                <div class="relative">
+                                    <div class="absolute -inset-1.5 bg-gradient-to-r from-[#8e6e3c] to-[#af9655] rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-700"></div>
+                                    <div class="relative flex items-center justify-center w-14 h-14 bg-slate-900 rounded-2xl border border-white/10 shadow-2xl">
+                                        <i class="fa-solid fa-earth-asia text-[#af9655] text-2xl animate-[spin_10s_linear_infinite]"></i>
+                                    </div>
+                                </div>
+                                <div class="h-12 w-[1px] bg-slate-200 mx-1"></div>
+                                <div class="flex flex-col justify-center">
+                                    <span class="text-[9px] font-black uppercase tracking-[0.5em] text-[#af9655] mb-1 leading-none">Global Sourcing Hub</span>
+                                    <h3 class="text-[15px] font-extrabold uppercase tracking-[0.1em] text-slate-900 leading-none">Rajasthan Export Hub</h3>
+                                </div>
+                            </div>
+
+                            <h2 class="heading-font text-4xl sm:text-6xl text-slate-900 mb-10 leading-[1.1] tracking-tight">Industrial Monolith. <br>Strategic <span class="text-[#af9655]">Global Partner.</span></h2>
+                            <p class="text-slate-600 text-lg sm:text-xl font-light leading-relaxed mb-8">Kanak Shree Minerals is the bridge between high-purity natural reserves and global high-tech industries. We provide the chemical backbone for automotive, aerospace, and electronics manufacturing worldwide.</p>
+                            
+                            <ul class="space-y-6 mt-12 mb-14">
+                                <li class="flex items-center gap-4 group">
+                                    <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-[#af9655] group-hover:bg-[#af9655] group-hover:text-white transition-all duration-300">
+                                        <i class="fa-solid fa-check text-xs"></i>
+                                    </div>
+                                    <span class="text-slate-900 font-bold text-sm tracking-wide uppercase">Tier-1 Rajasthan Mine Ownership</span>
+                                </li>
+                                <li class="flex items-center gap-4 group">
+                                    <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-[#af9655] group-hover:bg-[#af9655] group-hover:text-white transition-all duration-300">
+                                        <i class="fa-solid fa-check text-xs"></i>
+                                    </div>
+                                    <span class="text-slate-900 font-bold text-sm tracking-wide uppercase">Advanced In-House Purification Lab</span>
+                                </li>
+                                <li class="flex items-center gap-4 group">
+                                    <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-[#af9655] group-hover:bg-[#af9655] group-hover:text-white transition-all duration-300">
+                                        <i class="fa-solid fa-check text-xs"></i>
+                                    </div>
+                                    <span class="text-slate-900 font-bold text-sm tracking-wide uppercase">ISO 9001:2015 Compliant Export Flow</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <button onclick="showPage('dedicated-about')" class="btn-premium-gold px-12 py-5 uppercase text-[11px] tracking-[0.3em]">
+                                Explore our industrial legacy
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lg:w-1/2 order-1 lg:order-2 relative">
+                        <div class="relative group">
+                            <div class="absolute -top-10 -right-10 w-40 h-40 bg-[#af9655]/10 rounded-full blur-3xl -z-10"></div>
+                            <div class="relative z-10 overflow-hidden rounded-[40px] border-[12px] border-white shadow-2xl">
+                                <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                                     alt="Mineral Excavation Rajasthan" class="w-full h-[600px] object-cover hover:scale-105 transition-transform duration-1000">
+                            </div>
+                            <div class="absolute top-12 -left-8 sm:-left-16 bg-white/95 backdrop-blur-xl p-6 sm:p-8 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] rounded-3xl border border-[#af9655]/40 max-w-[180px] hidden sm:block z-20 reveal">
+                                <div class="text-center">
+                                    <div class="w-12 h-12 bg-[#af9655]/10 rounded-xl flex items-center justify-center text-[#af9655] mx-auto mb-4 border border-[#af9655]/20">
+                                        <i class="fa-solid fa-shield-halved text-xl"></i>
+                                    </div>
+                                    <p class="text-3xl font-black text-slate-900 mb-1 tracking-tighter">100%</p>
+                                    <p class="text-[9px] uppercase tracking-widest font-black text-[#af9655] leading-tight">Ethical <br>Sourcing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Redesigned Industrial Catalogue Index -->
+        <section id="products" class="py-16 sm:py-24 bg-slate-50 mineral-texture-light reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-4xl mx-auto mb-20">
+                    <h2 class="text-[#af9655] font-black uppercase tracking-[0.6em] text-[10px] mb-6">Technical Trading Sourcing</h2>
+                    <h3 class="heading-font text-4xl sm:text-6xl text-slate-900 mb-8 tracking-tight leading-tight">Premium Industrial <br>Mineral Portfolio</h3>
+                </div>
+                
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Muscovite Mica Card -->
+                    <div class="mineral-card-premium reveal reveal-delay-1 cursor-pointer group" onclick="showPage('product-muscovite')">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-[#af9655] text-2xl shadow-xl transition-transform group-hover:rotate-6 duration-500">
+                                <i class="fa-solid fa-dice-d20"></i>
+                            </div>
+                            <span class="text-[10px] font-black text-slate-300 uppercase tracking-widest">Grade 1-A</span>
+                        </div>
+                        <h4 class="font-black uppercase tracking-wider text-lg mb-2 text-slate-900">Muscovite Mica</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-4">Ultra-high thermal resistance with superior dielectric strength.</p>
+                        
+                        <div class="card-data-grid">
+                            <div class="data-point"><span>Purity</span><span>99.2% min</span></div>
+                            <div class="data-point"><span>Mesh</span><span>325 - 5000</span></div>
+                        </div>
+                        
+                        <div class="mt-auto flex items-center justify-between">
+                            <div class="text-[#af9655] text-[10px] font-black uppercase tracking-widest">Sourcing Specs</div>
+                            <i class="fa-solid fa-arrow-right-long text-[#af9655] group-hover:translate-x-2 transition-transform duration-500"></i>
+                        </div>
+                    </div>
+
+                    <!-- Potash Feldspar Card -->
+                    <div class="mineral-card-premium reveal reveal-delay-2 cursor-pointer group" onclick="showPage('product-feldspar')">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-[#af9655] text-2xl shadow-xl transition-transform group-hover:rotate-6 duration-500">
+                                <i class="fa-solid fa-industry"></i>
+                            </div>
+                            <span class="text-[10px] font-black text-slate-300 uppercase tracking-widest">Flux Grade</span>
+                        </div>
+                        <h4 class="font-black uppercase tracking-wider text-lg mb-2 text-slate-900">Potash Feldspar</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-4">Precision alkali ratio for high-end ceramics and vitrification.</p>
+                        
+                        <div class="card-data-grid">
+                            <div class="data-point"><span>K2O</span><span>11.5% min</span></div>
+                            <div class="data-point"><span>Fe2O3</span><span>0.05% max</span></div>
+                        </div>
+                        
+                        <div class="mt-auto flex items-center justify-between">
+                            <div class="text-[#af9655] text-[10px] font-black uppercase tracking-widest">Analysis Report</div>
+                            <i class="fa-solid fa-arrow-right-long text-[#af9655] group-hover:translate-x-2 transition-transform duration-500"></i>
+                        </div>
+                    </div>
+
+                    <!-- Biotite Mica Card -->
+                    <div class="mineral-card-premium reveal reveal-delay-3 cursor-pointer group" onclick="showPage('product-biotite')">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-[#af9655] text-2xl shadow-xl transition-transform group-hover:rotate-6 duration-500">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                            <span class="text-[10px] font-black text-slate-300 uppercase tracking-widest">Shield Grade</span>
+                        </div>
+                        <h4 class="font-black uppercase tracking-wider text-lg mb-2 text-slate-900">Biotite Mica</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-4">Iron-rich structural shielding for specialized coatings.</p>
+                        
+                        <div class="card-data-grid">
+                            <div class="data-point"><span>MgO</span><span>12.8% avg</span></div>
+                            <div class="data-point"><span>Loss</span><span>1.5% max</span></div>
+                        </div>
+                        
+                        <div class="mt-auto flex items-center justify-between">
+                            <div class="text-[#af9655] text-[10px] font-black uppercase tracking-widest">Technical Hub</div>
+                            <i class="fa-solid fa-arrow-right-long text-[#af9655] group-hover:translate-x-2 transition-transform duration-500"></i>
+                        </div>
+                    </div>
+
+                    <!-- Industrial Talc Card -->
+                    <div class="mineral-card-premium reveal reveal-delay-4 cursor-pointer group" onclick="showPage('product-talc')">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-[#af9655] text-2xl shadow-xl transition-transform group-hover:rotate-6 duration-500">
+                                <i class="fa-solid fa-vial-circle-check"></i>
+                            </div>
+                            <span class="text-[10px] font-black text-slate-300 uppercase tracking-widest">Polymer Grade</span>
+                        </div>
+                        <h4 class="font-black uppercase tracking-wider text-lg mb-2 text-slate-900">Industrial Talc</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-4">Micronized brightness with controlled oil absorption.</p>
+                        
+                        <div class="card-data-grid">
+                            <div class="data-point"><span>Whiteness</span><span>96% min</span></div>
+                            <div class="data-point"><span>pH slurry</span><span>8.5 - 9.5</span></div>
+                        </div>
+                        
+                        <div class="mt-auto flex items-center justify-between">
+                            <div class="text-[#af9655] text-[10px] font-black uppercase tracking-widest">Get TDS/MSDS</div>
+                            <i class="fa-solid fa-arrow-right-long text-[#af9655] group-hover:translate-x-2 transition-transform duration-500"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compliance Section -->
+        <section id="certifications-premium" class="py-8 sm:py-12 bg-[#0f0f0f] text-white reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <h3 class="heading-font text-3xl sm:text-5xl mb-6">Certified. Compliant. Globally Trusted.</h3>
+                <p class="text-slate-400 mb-12 max-w-3xl mx-auto">Ensuring consistent, reliable, and premium-grade mineral supply worldwide through ISO standards.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="p-8 bg-[#1e1e1e] rounded-2xl border border-white/5 group transition-all hover:border-[#af9655]/40 shadow-2xl">
+                        <i class="fa-solid fa-shield-halved text-3xl accent-text mb-4 group-hover:scale-110 transition-transform"></i>
+                        <p class="text-[10px] uppercase font-bold tracking-widest">ISO 9001 Certified</p>
+                    </div>
+                    <div class="p-8 bg-[#1e1e1e] rounded-2xl border border-white/5 group transition-all hover:border-[#af9655]/40 shadow-2xl">
+                        <i class="fa-solid fa-globe text-3xl accent-text mb-4 group-hover:scale-110 transition-transform"></i>
+                        <p class="text-[10px] uppercase font-bold tracking-widest">Trade Compliant</p>
+                    </div>
+                    <div class="p-8 bg-[#1e1e1e] rounded-2xl border border-white/5 group transition-all hover:border-[#af9655]/40 shadow-2xl">
+                        <i class="fa-solid fa-microscope text-3xl accent-text mb-4 group-hover:scale-110 transition-transform"></i>
+                        <p class="text-[10px] uppercase font-bold tracking-widest">Quality Audited</p>
+                    </div>
+                    <div class="p-8 bg-[#1e1e1e] rounded-2xl border border-white/5 group transition-all hover:border-[#af9655]/40 shadow-2xl">
+                        <i class="fa-solid fa-box-open text-3xl accent-text mb-4 group-hover:scale-110 transition-transform"></i>
+                        <p class="text-[10px] uppercase font-bold tracking-widest">Global Logistics</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Process Section -->
+        <section id="process" class="pt-8 pb-2 sm:pt-12 sm:pb-4 bg-white reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-12 lg:gap-20">
+                <div class="lg:w-1/3"><h3 class="heading-font text-4xl mb-6">Our Process in 4 Steps</h3><p class="text-slate-600 font-light leading-relaxed mb-8">End-to-end technical precision at each stage of mineral production.</p><div class="h-1.5 w-24 bg-[#af9655] rounded-full"></div></div>
+                <div class="lg:w-2/3 space-y-6">
+                    <div class="flex items-start gap-6 p-6 border border-slate-50 rounded-2xl hover:bg-slate-50 duration-500 group"><div class="w-16 h-16 shrink-0 border-2 border-slate-900 rounded-full flex items-center justify-center p-3 group-hover:bg-slate-900 duration-500 overflow-hidden shadow-md"><img src="https://res.cloudinary.com/dslvuduln/image/upload/v1768319452/mining_rmgxas.png" class="grayscale group-hover:invert transition-all"></div><div><h4 class="font-black uppercase mb-1 text-sm">Mining</h4><p class="text-slate-500 text-sm">Precision extraction from Rajasthan's high-grade mineral reserves.</p></div></div>
+                    <div class="flex items-start gap-6 p-6 border border-slate-50 rounded-2xl hover:bg-slate-50 duration-500 group"><div class="w-16 h-16 shrink-0 border-2 border-slate-900 rounded-full flex items-center justify-center p-3 group-hover:bg-slate-900 duration-500 overflow-hidden shadow-md"><img src="https://res.cloudinary.com/dslvuduln/image/upload/v1768319448/grinding_daaqq9.png" class="grayscale group-hover:invert transition-all"></div><div><h4 class="font-black uppercase mb-1 text-sm">Grinding</h4><p class="text-slate-500 text-sm">Advanced industrial milling to achieve technical mesh specifications.</p></div></div>
+                    <div class="flex items-start gap-6 p-6 border border-slate-50 rounded-2xl hover:bg-slate-50 duration-500 group"><div class="w-16 h-16 shrink-0 border-2 border-slate-900 rounded-full flex items-center justify-center p-3 group-hover:bg-slate-900 duration-500 overflow-hidden shadow-md"><img src="https://res.cloudinary.com/dslvuduln/image/upload/v1768319438/quality-assurance_cbfqus.png" class="grayscale group-hover:invert transition-all"></div><div><h4 class="font-black uppercase mb-1 text-sm">Quality Audit</h4><p class="text-slate-500 text-sm">Rigorous batch laboratory audits ensuring 100% material consistency.</p></div></div>
+                    <div class="flex items-start gap-6 p-6 border border-slate-50 rounded-2xl hover:bg-slate-50 duration-500 group"><div class="w-16 h-16 shrink-0 border-2 border-slate-900 rounded-full flex items-center justify-center p-3 group-hover:bg-slate-900 duration-500 overflow-hidden shadow-md"><img src="https://res.cloudinary.com/dslvuduln/image/upload/v1768319426/box-2-1_hgmjz7.png" class="grayscale group-hover:invert transition-all"></div><div><h4 class="font-black uppercase mb-1 text-sm">Logistics</h4><p class="text-slate-500 text-sm">Industrial moisture-proof export packaging for international transit.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us Section -->
+        <section id="contact" class="pt-2 pb-10 sm:pt-4 sm:pb-20 bg-slate-50 reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="contact-enquiry-card">
+                    <div class="text-left">
+                        <h3 class="text-[#af9655] font-black uppercase text-[11px] tracking-[0.5em] mb-6">Global Trading Desk</h3>
+                        <h2 class="heading-font text-slate-900 text-4xl sm:text-5xl mb-10 tracking-tighter leading-tight">Contact Us</h2>
+                        <p class="text-slate-500 mb-12 font-light text-lg leading-relaxed">Our trade specialists are ready to provide technical guidance, bulk logistics pricing, and material certification reports.</p>
+                        
+                        <div class="space-y-8 border-t border-slate-100 pt-10">
+                            <div class="flex items-center gap-5">
+                                <div class="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-[#af9655] text-lg"><i class="fa-solid fa-envelope"></i></div>
+                                <div>
+                                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Corporate Email</p>
+                                    <p class="text-slate-900 font-bold">exports@kanakshree.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-5">
+                                <div class="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-[#af9655] text-lg"><i class="fa-solid fa-phone"></i></div>
+                                <div>
+                                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Trading Line</p>
+                                    <p class="text-slate-900 font-bold">+91 (294) 248-1234</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-5">
+                                <div class="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-[#af9655] text-lg"><i class="fa-solid fa-location-dot"></i></div>
+                                <div>
+                                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Global HQ</p>
+                                    <p class="text-slate-900 font-bold">Udaipur, Rajasthan, India</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full">
+                        <form id="enquiryForm" class="contact-form-grid">
+                            <div class="col-span-1"><input type="text" placeholder="Full Name" required></div>
+                            <div class="col-span-1"><input type="text" placeholder="Job Title" required></div>
+                            <div class="col-span-1"><input type="text" placeholder="Company Name" required></div>
+                            <div class="col-span-1"><input type="text" placeholder="Company Website (Optional)"></div>
+                            <div class="col-span-1"><input type="email" placeholder="Business Email Address" required></div>
+                            <div class="col-span-1"><input type="tel" placeholder="Mobile Number (with Country Code)" required></div>
+                            <div class="col-span-1">
+                                <select required>
+                                    <option value="" disabled selected>Target Sourcing Region</option>
+                                    <option>Americas (USA/Canada)</option>
+                                    <option>Europe (EU/UK)</option>
+                                    <option>Asia-Pacific / East Asia</option>
+                                    <option>Middle East & Africa</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1">
+                                <select required>
+                                    <option value="" disabled selected>Mineral Interest</option>
+                                    <option>Muscovite Mica</option>
+                                    <option>Potash Feldspar</option>
+                                    <option>Industrial Talc</option>
+                                    <option>Biotite Mica</option>
+                                    <option>Other Minerals</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1 lg:col-span-2">
+                                <select required>
+                                    <option value="" disabled selected>Business Type</option>
+                                    <option>OEM / Manufacturer</option>
+                                    <option>Trading Entity / Distributor</option>
+                                    <option>Logistics / Supply Chain</option>
+                                    <option>Research & Development</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1 lg:col-span-2">
+                                <textarea placeholder="Technical Specification Requirements, Monthly Estimated Volume (MT), and Shipping Terms" required class="min-h-[120px]"></textarea>
+                            </div>
+                            <div class="col-span-1 lg:col-span-2">
+                                <button type="submit" class="btn-gold py-5 w-full text-[12px] uppercase tracking-[0.4em] active:scale-95 transition-all mt-2">Submit Request <i class="fa-solid fa-paper-plane ml-3"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="successMessage" class="hidden mt-10 p-12 bg-green-50 text-green-800 rounded-[40px] text-center font-bold shadow-2xl border border-green-100 transition-all duration-700">
+                    <i class="fa-solid fa-circle-check text-4xl mb-4 block text-green-600"></i>
+                    Your inquiry has been logged successfully. Our trade desk will contact you within one business cycle.
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DEDICATED ABOUT PAGE VIEW -->
+    <div id="dedicated-about" class="page-wrapper page-hidden min-h-screen bg-[#fcfcfc] pt-24">
+        <!-- Heritage & Expertise Hero -->
+        <section class="py-16 sm:py-32 bg-[#0a0a0a] text-white relative overflow-hidden border-b border-white/5">
+            <div class="absolute inset-0 opacity-40 pointer-events-none">
+                <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=1920&q=80" alt="High-Purity Mining" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle,transparent_20%,rgba(0,0,0,0.8)_100%)]"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <button onclick="showPage('main-wrapper')" class="mb-10 inline-flex items-center gap-4 text-[#af9655] font-black text-[10px] uppercase tracking-[0.4em] hover:text-white transition-all group reveal">
+                    <i class="fa-solid fa-arrow-left-long group-hover:-translate-x-2 transition-transform"></i> Return to portal
+                </button>
+                <div class="mb-6 flex justify-center reveal">
+                    <div class="h-1.5 w-24 bg-[#af9655] rounded-full"></div>
+                </div>
+                <h1 class="heading-font text-5xl sm:text-8xl mb-8 tracking-tighter leading-[0.95] text-white reveal">Precision in Every <br><span class="text-[#af9655]">Mineral Micro-Gram.</span></h1>
+                <p class="max-w-3xl mx-auto text-white/70 text-lg sm:text-xl font-light leading-relaxed mb-12 reveal">
+                    Kanak Shree Minerals stands at the intersection of Rajasthan's geological wealth and the world's most demanding industrial standards.
+                </p>
+                <div class="flex justify-center gap-6 reveal">
+                    <div class="px-8 py-3.5 border border-white/10 rounded-full bg-white/5 backdrop-blur-md text-[10px] font-black uppercase tracking-[0.2em] text-white/80 shadow-2xl">Est. 2008</div>
+                    <div class="px-8 py-3.5 border border-white/10 rounded-full bg-white/5 backdrop-blur-md text-[10px] font-black uppercase tracking-[0.2em] text-white/80 shadow-2xl">ISO 9001:2015</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Philosophy -->
+        <section class="py-8 sm:py-10 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-3 gap-8 sm:gap-12">
+                    <div class="space-y-3 reveal">
+                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-[#af9655] border border-slate-100 shadow-sm"><i class="fa-solid fa-eye text-xl"></i></div>
+                        <h3 class="heading-font text-2xl text-slate-900 tracking-tight uppercase">Corporate Vision</h3>
+                        <p class="text-slate-500 font-light text-sm leading-relaxed">To be the singular most trusted global conduit for high-purity industrial minerals, setting the benchmark for consistency, ethical sourcing, and logistical transparency across the five major continents.</p>
+                    </div>
+                    <div class="space-y-3 reveal">
+                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-[#af9655] border border-slate-100 shadow-sm"><i class="fa-solid fa-bullseye text-xl"></i></div>
+                        <h3 class="heading-font text-2xl text-slate-900 tracking-tight uppercase">Strategic Mission</h3>
+                        <p class="text-slate-500 font-light text-sm leading-relaxed">To empower manufacturing entities with mineral assets that exceed technical expectations. We achieve this through rigorous in-house lab auditing, site-specific extraction control, and zero-compromise quality assurance.</p>
+                    </div>
+                    <div class="space-y-3 reveal">
+                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-[#af9655] border border-slate-100 shadow-sm"><i class="fa-solid fa-handshake text-xl"></i></div>
+                        <h3 class="heading-font text-2xl text-slate-900 tracking-tight uppercase">Export Integrity</h3>
+                        <p class="text-slate-500 font-light text-sm leading-relaxed">We pledge 100% adherence to international trade laws, ensuring that every container shipped from Rajasthan arrives with verified documentation, batch purity certificates, and ethical clearance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Benchmarks -->
+        <section class="py-8 sm:py-12 bg-[#f8f9fb] border-y border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 items-center mb-12">
+                    <div class="reveal">
+                        <span class="text-[#af9655] font-black uppercase text-[10px] tracking-[0.5em] mb-4 block">Operational Infrastructure</span>
+                        <h2 class="heading-font text-4xl sm:text-5xl text-slate-900 mb-6 tracking-tighter leading-tight">Advanced Extraction & Processing Portals.</h2>
+                        <p class="text-slate-600 text-lg font-light leading-relaxed mb-6">Our strength lies in absolute control. From the moment our excavators reach the rich mineral veins in Udaipur to the final micron-sieved powder, every step is managed by Kanak Shree's technical workforce.</p>
+                        <div class="grid grid-cols-2 gap-6 mt-8">
+                            <div class="border-l-4 border-[#af9655] pl-6 py-2"><h5 class="font-black uppercase text-[11px] text-slate-900 tracking-widest mb-1">Milling Plants</h5><p class="text-slate-400 text-xs">Udaipur & Bhilwara</p></div>
+                            <div class="border-l-4 border-slate-900 pl-6 py-2"><h5 class="font-black uppercase text-[11px] text-slate-900 tracking-widest mb-1">R&D Facilities</h5><p class="text-slate-400 text-xs">Integrated Purity Labs</p></div>
+                        </div>
+                    </div>
+                    <div class="relative reveal">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1000&q=80" alt="Laboratory" class="rounded-[40px] shadow-3xl w-full h-[400px] object-cover border-[10px] border-white">
+                        <div class="absolute -bottom-6 -left-6 bg-[#af9655] text-white p-6 rounded-[30px] shadow-2xl max-w-[220px]">
+                            <p class="text-[10px] uppercase font-black tracking-[0.3em] mb-2 opacity-80">Lab Verification</p>
+                            <p class="text-xl font-bold tracking-tight leading-tight italic">"Chemical precision is our ultimate commodity."</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-6 text-center reveal"><h3 class="heading-font text-3xl sm:text-4xl text-slate-900 uppercase tracking-tighter mb-2">Technical Benchmarks</h3><p class="text-slate-500 font-light mb-8">Global standard metrics for our Rajasthan-based operations.</p></div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-3xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.02)] border border-slate-100 relative overflow-hidden group hover:border-[#af9655] transition-all duration-700 reveal"><div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><i class="fa-solid fa-mountain text-8xl text-slate-900"></i></div><div class="relative z-10"><span class="text-[#af9655] font-black uppercase text-[9px] tracking-[0.3em] mb-4 block">Supply Capacity</span><p class="text-5xl font-black text-slate-900 mb-4 tracking-tighter">2,000<span class="text-2xl ml-2 text-slate-400">MT</span></p><div class="h-[1px] w-full bg-slate-100 mb-4"></div><h4 class="font-bold text-slate-800 text-sm mb-2 uppercase tracking-wide">Monthly Output</h4><p class="text-slate-400 text-xs leading-relaxed">Guaranteed volume stability for OEM and long-term industrial contracts.</p></div></div>
+                    <div class="bg-slate-900 rounded-3xl p-8 shadow-2xl border border-white/5 relative overflow-hidden group hover:border-[#af9655] transition-all duration-700 reveal"><div class="absolute top-0 right-0 p-6 opacity-10"><i class="fa-solid fa-vial text-8xl text-white"></i></div><div class="relative z-10"><span class="text-[#af9655] font-black uppercase text-[9px] tracking-[0.3em] mb-4 block">Material Purity</span><p class="text-5xl font-black text-white mb-4 tracking-tighter">99.5<span class="text-2xl ml-2 text-white/30">%</span></p><div class="h-[1px] w-full bg-white/10 mb-4"></div><h4 class="font-bold text-white text-sm mb-2 uppercase tracking-wide">Purity Threshold</h4><p class="text-slate-400 text-xs leading-relaxed">Batch-specific chemical verification ensuring minimal metallic impurities.</p></div></div>
+                    <div class="bg-white rounded-3xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.02)] border border-slate-100 relative overflow-hidden group hover:border-[#af9655] transition-all duration-700 reveal"><div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><i class="fa-solid fa-globe text-8xl text-slate-900"></i></div><div class="relative z-10"><span class="text-[#af9655] font-black uppercase text-[9px] tracking-[0.3em] mb-4 block">Trade Logistics</span><p class="text-5xl font-black text-slate-900 mb-4 tracking-tighter">50<span class="text-2xl ml-2 text-slate-400">Nations</span></p><div class="h-[1px] w-full bg-slate-100 mb-4"></div><h4 class="font-bold text-slate-800 text-sm mb-2 uppercase tracking-wide">Export Coverage</h4><p class="text-slate-400 text-xs leading-relaxed">Integrated customs documentation and multi-modal transit excellence.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Verticality Section -->
+        <section class="pt-8 pb-4 sm:pt-12 sm:pb-6 bg-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <div class="max-w-3xl mx-auto mb-12 reveal">
+                    <span class="text-[#af9655] font-black uppercase text-[10px] tracking-[0.6em] mb-3 block">Process Architecture</span>
+                    <h2 class="heading-font text-4xl sm:text-5xl text-slate-900 tracking-tight uppercase leading-none">Operational <span class="text-[#af9655]">Verticality</span></h2>
+                </div>
+                <div class="grid lg:grid-cols-4 gap-0 border border-slate-100 rounded-[20px] overflow-hidden shadow-sm">
+                    <div class="group relative reveal p-8 sm:p-10 border-r border-slate-100 hover:bg-slate-50 transition-colors duration-500 text-left">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="text-7xl font-black text-slate-200 group-hover:text-[#af9655]/20 transition-colors duration-500">01</span>
+                            <i class="fa-solid fa-mountain text-2xl text-slate-200 group-hover:text-slate-900 transition-colors duration-500"></i>
+                        </div>
+                        <h4 class="text-slate-900 font-extrabold uppercase tracking-widest text-[13px] mb-4">Strategic Mining</h4>
+                        <div class="h-0.5 w-8 bg-slate-200 group-hover:w-full group-hover:bg-[#af9655] transition-all duration-700 mb-6"></div>
+                        <p class="text-slate-500 text-xs leading-relaxed font-medium">Direct extraction from owned high-grade mineral reserves in Rajasthan, ensuring baseline purity control.</p>
+                    </div>
+                    <div class="group relative reveal p-8 sm:p-10 border-r border-slate-100 hover:bg-slate-50 transition-colors duration-500 text-left" style="transition-delay: 100ms;">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="text-7xl font-black text-slate-200 group-hover:text-[#af9655]/20 transition-colors duration-500">02</span>
+                            <i class="fa-solid fa-industry text-2xl text-slate-200 group-hover:text-slate-900 transition-colors duration-500"></i>
+                        </div>
+                        <h4 class="text-slate-900 font-extrabold uppercase tracking-widest text-[13px] mb-4">Industrial Milling</h4>
+                        <div class="h-0.5 w-8 bg-slate-200 group-hover:w-full group-hover:bg-[#af9655] transition-all duration-700 mb-6"></div>
+                        <p class="text-slate-500 text-xs leading-relaxed font-medium">Advanced multi-stage micronization and grinding to meet global technical mesh specifications (5-5000 Mesh).</p>
+                    </div>
+                    <div class="group relative reveal p-8 sm:p-10 border-r border-slate-100 hover:bg-slate-50 transition-colors duration-500 text-left" style="transition-delay: 200ms;">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="text-7xl font-black text-slate-200 group-hover:text-[#af9655]/20 transition-colors duration-500">03</span>
+                            <i class="fa-solid fa-flask-vial text-2xl text-slate-200 group-hover:text-slate-900 transition-colors duration-500"></i>
+                        </div>
+                        <h4 class="text-slate-900 font-extrabold uppercase tracking-widest text-[13px] mb-4">Technical Audit</h4>
+                        <div class="h-0.5 w-8 bg-slate-200 group-hover:w-full group-hover:bg-[#af9655] transition-all duration-700 mb-6"></div>
+                        <p class="text-slate-500 text-xs leading-relaxed font-medium">Rigorous batch laboratory audits verifying chemical composition and physical purity for international OEM standards.</p>
+                    </div>
+                    <div class="group relative reveal p-8 sm:p-10 hover:bg-slate-50 transition-colors duration-500 text-left" style="transition-delay: 300ms;">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="text-7xl font-black text-slate-200 group-hover:text-[#af9655]/20 transition-colors duration-500">04</span>
+                            <i class="fa-solid fa-boxes-packing text-2xl text-slate-200 group-hover:text-slate-900 transition-colors duration-500"></i>
+                        </div>
+                        <h4 class="text-slate-900 font-extrabold uppercase tracking-widest text-[13px] mb-4">Export Logistics</h4>
+                        <div class="h-0.5 w-8 bg-slate-200 group-hover:w-full group-hover:bg-[#af9655] transition-all duration-700 mb-6"></div>
+                        <p class="text-slate-500 text-xs leading-relaxed font-medium">Integrated logistics and moisture-proof export packaging for high-purity minerals reaching global ports efficiently.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sustainability Section -->
+        <section class="pt-4 pb-12 sm:pt-6 sm:pb-16 bg-white border-t border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-10 reveal">
+                    <h2 class="heading-font text-3xl sm:text-5xl text-slate-900 mb-4 tracking-tighter">Ethical Sourcing & Sustainability</h2>
+                    <p class="text-slate-500 font-light text-lg">International buyers require more than just quality; they require responsibility.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="p-10 rounded-[40px] bg-gradient-to-br from-[#ffffff] to-[#f8f9fa] border border-slate-100 shadow-sm transition-all duration-700 group hover:shadow-[0_40px_80px_-20px_rgba(142,110,60,0.15)] hover:-translate-y-4 hover:from-[#af9655]/10 hover:to-[#ffffff] relative overflow-hidden reveal reveal-delay-1">
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 opacity-10 group-hover:opacity-20 transition-all duration-1000 group-hover:scale-150 group-hover:rotate-45" style="background: var(--accent-gold); clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);"></div>
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 bg-white rounded-[20px] shadow-md border border-slate-100 flex items-center justify-center text-[#af9655] text-3xl mb-8 group-hover:bg-[#af9655] group-hover:text-white transition-all duration-500 group-hover:rotate-12 [clip-path:polygon(20%_0%,_80%_0%,_100%_20%,_100%_80%,_80%_100%,_20%_100%,_0%_80%,_0%_20%)]"><i class="fa-solid fa-child-reaching"></i></div>
+                            <h4 class="font-black uppercase tracking-[0.2em] text-sm mb-4 text-slate-900">No Child Labor</h4>
+                            <p class="text-slate-500 text-sm leading-relaxed">Strict enforcement of zero child-labor policies across all Rajasthan extraction points and logistics chains.</p>
+                        </div>
+                    </div>
+                    <div class="p-10 rounded-[40px] bg-gradient-to-br from-[#ffffff] to-[#f8f9fa] border border-slate-100 shadow-sm transition-all duration-700 group hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] hover:-translate-y-4 hover:from-[#2b2b2b]/5 hover:to-[#ffffff] relative overflow-hidden reveal reveal-delay-2">
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 opacity-10 group-hover:opacity-20 transition-all duration-1000 group-hover:scale-150 group-hover:-rotate-12" style="background: #2b2b2b; clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);"></div>
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 bg-white rounded-[20px] shadow-md border border-slate-100 flex items-center justify-center text-[#af9655] text-3xl mb-8 group-hover:bg-slate-900 group-hover:text-white transition-all duration-500 group-hover:-rotate-12 [clip-path:polygon(30%_0%,_70%_0%,_100%_30%,_100%_70%,_70%_100%,_30%_100%,_0%_70%,_0%_30%)]"><i class="fa-solid fa-leaf"></i></div>
+                            <h4 class="font-black uppercase tracking-[0.2em] text-sm mb-4 text-slate-900">Eco-Restoration</h4>
+                            <p class="text-slate-500 text-sm leading-relaxed">Active reforestation and site reclamation programs ensuring mining sites return to their original lush ecological state.</p>
+                        </div>
+                    </div>
+                    <div class="p-10 rounded-[40px] bg-gradient-to-br from-[#ffffff] to-[#f8f9fa] border border-slate-100 shadow-sm transition-all duration-700 group hover:shadow-[0_40px_80px_-20px_rgba(142,110,60,0.15)] hover:-translate-y-4 hover:from-[#af9655]/10 hover:to-[#ffffff] relative overflow-hidden reveal reveal-delay-3">
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 opacity-10 group-hover:opacity-20 transition-all duration-1000 group-hover:scale-150 group-hover:rotate-180" style="background: var(--accent-gold); clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 bg-white rounded-[20px] shadow-md border border-slate-100 flex items-center justify-center text-[#af9655] text-3xl mb-8 group-hover:bg-[#af9655] group-hover:text-white transition-all duration-500 group-hover:scale-110 [clip-path:polygon(50%_0%,_100%_25%,_100%_75%,_50%_100%,_0%_75%,_0%_25%)]"><i class="fa-solid fa-helmet-safety"></i></div>
+                            <h4 class="font-black uppercase tracking-[0.2em] text-sm mb-4 text-slate-900">Safe Mining</h4>
+                            <p class="text-slate-500 text-sm leading-relaxed">Adherence to global labor safety standards (OSHA equivalent) for the health and welfare of our operational workforce.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-8 bg-white border-t border-slate-100 text-center reveal"><button onclick="showPage('main-wrapper')" class="btn-gold px-14 py-6 shadow-3xl tracking-widest font-bold">Return to Home Portal</button></footer>
+    </div>
+
+    <!-- PRODUCT VIEW: MUSCOVITE MICA -->
+    <div id="product-muscovite" class="page-wrapper page-hidden min-h-screen bg-white pt-24 reveal">
+        <section class="py-12 sm:py-24 bg-slate-50 border-b border-slate-100 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <button onclick="showPage('main-wrapper')" class="mb-10 inline-flex items-center gap-4 text-[#af9655] font-bold text-[11px] tracking-[0.2em] hover:text-slate-900 transition-colors"><i class="fa-solid fa-arrow-left-long"></i> Back to portal</button>
+                <div class="flex flex-col lg:flex-row gap-16 items-center">
+                    <div class="lg:w-1/2">
+                        <h1 class="heading-font text-4xl sm:text-6xl text-slate-900 mb-4 tracking-tighter leading-tight">High-Quality Muscovite Mica.</h1>
+                        <div class="h-1.5 w-24 bg-[#af9655] mb-10 rounded-full"></div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-[#af9655] mb-6 tracking-tight">Premium-grade mica processed to stringent international standards.</h2>
+                        <p class="text-slate-600 text-lg font-light leading-relaxed mb-10">Muscovite Mica is a high-purity natural mineral known for its excellent thermal stability and insulation. Processed to ensure consistent technical mesh sizes and superior brightness.</p>
+                        <a href="javascript:void(0)" onclick="showPage('main-wrapper', 'contact')" class="btn-gold px-12 py-5 inline-block uppercase text-xs tracking-widest shadow-xl">Get Datasheet</a>
+                    </div>
+                    <div class="lg:w-1/2 relative group">
+                        <div class="absolute -inset-4 bg-[#af9655]/10 rounded-3xl blur-2xl"></div>
+                        <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=800&q=80" alt="Mica" class="relative rounded-[48px] shadow-3xl border-8 border-white object-cover h-[400px] sm:h-[500px] w-full">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-28 bg-white reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-20"><h2 class="text-[#af9655] font-black uppercase tracking-[0.5em] text-[12px] mb-6">Technical utility</h2><h3 class="heading-font text-4xl sm:text-5xl text-slate-900 tracking-tight uppercase">Industrial application used</h3></div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="app-card-premium reveal reveal-delay-1 group">
+                        <div class="app-card-img-wrapper"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&get=80" alt="Electronics"></div>
+                        <div class="app-overlay-content"><h4>Electronics</h4><p>High-voltage insulation for capacitors and industrial transformers.</p></div>
+                    </div>
+                    <div class="app-card-premium reveal reveal-delay-2 group">
+                        <div class="app-card-img-wrapper"><img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=600&get=80" alt="Paint"></div>
+                        <div class="app-overlay-content"><h4>Coatings</h4><p>Enhancing durability and preventing anti-cracking in specialty paints.</p></div>
+                    </div>
+                    <div class="app-card-premium reveal reveal-delay-3 group">
+                        <div class="app-card-img-wrapper"><img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=crop&w=600&get=80" alt="Plastics"></div>
+                        <div class="app-overlay-content"><h4>Polymers</h4><p>Thermal reinforcement agent for advanced automotive components.</p></div>
+                    </div>
+                    <div class="app-card-premium reveal reveal-delay-4 group">
+                        <div class="app-card-img-wrapper"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&get=80" alt="Construction"></div>
+                        <div class="app-overlay-content"><h4>Construction</h4><p>Technical filler for specialty fireproofing and joint compounds.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-28 bg-slate-50 border-y border-slate-100 reveal">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16"><h3 class="heading-font text-3xl sm:text-5xl text-slate-900 tracking-tighter uppercase">Technical Specification</h3></div>
+                <table class="tech-spec-table bg-white shadow-3xl">
+                    <thead><tr><th>Technical Property</th><th>Standard Reference</th></tr></thead>
+                    <tbody>
+                        <tr><td>Chemical Formula</td><td class="font-bold text-slate-900">KAl₂(AlSi₃O₁₀)(OH)₂</td></tr>
+                        <tr><td>Appearance</td><td>Silvery to light golden flakes / powder</td></tr>
+                        <tr><td>Specific Gravity</td><td>2.75 – 2.90 Standard</td></tr>
+                        <tr><td>Mohs Hardness</td><td>2.5 – 3.0 High Durability</td></tr>
+                        <tr><td>pH (10% slurry)</td><td>7.5 ± 0.5 Balanced</td></tr>
+                        <tr><td>Bulk Density</td><td>0.6 – 0.9 g/cm³</td></tr>
+                    </tbody>
+                </table>
+                <div class="mt-20 text-center"><button onclick="showPage('main-wrapper', 'contact')" class="btn-gold px-16 py-7 shadow-3xl uppercase tracking-widest text-sm">Initiate Sourcing Inquiry</button></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- GLOBAL FOOTER -->
+    <footer class="bg-[#0a0a0a] text-slate-500 py-16 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-16">
+                <div class="space-y-8">
+                    <img src="https://res.cloudinary.com/dslvuduln/image/upload/v1767941015/kanak_shree_minerals_logo-removebg-preview_jlam45.png" alt="Logo" class="h-20 md:h-24 object-contain mx-auto md:mx-0">
+                    <div class="flex justify-center md:justify-start gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:text-[#af9655]"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:text-[#af9655]"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="mailto:exports@kanakshree.com" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:text-[#af9655]"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div><h5 class="text-white font-bold mb-10 uppercase text-[11px] tracking-[0.4em]">Corporate</h5><ul class="space-y-4 text-sm font-medium"><li><a href="javascript:void(0)" onclick="showPage('main-wrapper')" class="hover:text-white duration-300">Home Portal</a></li><li><a href="javascript:void(0)" onclick="showPage('dedicated-about')" class="hover:text-white duration-300">Our Legacy</a></li></ul></div>
+                <div><h5 class="text-white font-bold mb-10 uppercase text-[11px] tracking-[0.4em]">Industries</h5><ul class="space-y-4 text-sm font-medium"><li><a href="javascript:void(0)" onclick="showPage('product-muscovite')" class="hover:text-white duration-300">Electrical Grade</a></li><li><a href="javascript:void(0)" onclick="showPage('main-wrapper')" class="hover:text-white duration-300">Technical Catalogue</a></li></ul></div>
+                <div><h5 class="text-white font-bold mb-10 uppercase text-[11px] tracking-[0.4em]">Support</h5><div class="space-y-6"><div class="flex items-center justify-center md:justify-start gap-4 text-sm font-medium"><i class="fa-solid fa-clock accent-text"></i><span>IST | 09:00 - 18:00</span></div><div class="flex items-center justify-center md:justify-start gap-4 text-sm font-medium"><i class="fa-solid fa-earth-asia accent-text"></i><span>Rajasthan, India</span></div></div></div>
+            </div>
+            <div class="border-t border-white/5 pt-12 text-center text-[10px] uppercase tracking-[0.3em] font-bold text-slate-500"><p>© 2024 Kanak Shree Minerals. Mineral Logistics Excellence Worldwide.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId, targetId = null) {
+            document.querySelectorAll('.page-wrapper').forEach(el => el.classList.add('page-hidden'));
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) targetPage.classList.remove('page-hidden');
+            window.dispatchEvent(new Event('scroll'));
+            if (targetId) {
+                setTimeout(() => {
+                    const el = document.getElementById(targetId);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            } else { window.scrollTo({ top: 0, behavior: 'instant' }); }
+            closeMobileMenu();
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu && !menu.classList.contains('hidden')) menu.classList.add('hidden');
+        }
+
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+        const slideInterval = 6000;
+        let slideTimer;
+
+        function showSlide(n) {
+            if(!slides.length) return;
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() { showSlide(currentSlide + 1); }
+        function startAutoPlay() { clearInterval(slideTimer); slideTimer = setInterval(nextSlide, slideInterval); }
+        startAutoPlay();
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                showSlide(parseInt(dot.getAttribute('data-index')));
+                startAutoPlay();
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    if(entry.target.id === 'record') startCounters();
+                    if(entry.target.classList.contains('app-card-premium')) entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.02, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal, .app-card-premium').forEach(el => observer.observe(el));
+
+        function startCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                if(counter.getAttribute('data-started') === 'true') return;
+                counter.setAttribute('data-started', 'true');
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = Math.max(1, target / 100);
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 25);
+                    } else { counter.innerText = target; }
+                };
+                updateCount();
+            });
+        }
+
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        if(btn) { btn.addEventListener('click', (e) => { e.stopPropagation(); menu.classList.toggle('hidden'); }); }
+        document.addEventListener('click', () => { if (menu && !menu.classList.contains('hidden')) menu.classList.add('hidden'); });
+
+        const form = document.getElementById('enquiryForm');
+        if(form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                form.classList.add('opacity-30', 'pointer-events-none');
+                setTimeout(() => {
+                    form.classList.add('hidden');
+                    document.getElementById('successMessage').classList.remove('hidden');
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>
