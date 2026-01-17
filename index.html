@@ -7,7 +7,7 @@
     <!-- 
         ========================================================================================
         KANAK SHREE MINERALS - PREMIUM INDUSTRIAL EXPORT PLATFORM
-        VERSION: 18.1.0 (Advanced Mineral Catalogue & Data-Ribbon Metrics)
+        VERSION: 18.3.0 (Interactive Square Portfolio & Refined Layout)
         ========================================================================================
     -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -252,36 +252,25 @@
             flex-shrink: 0;
         }
 
-        /* CATALOGUE CARD REFINEMENT */
+        /* CATALOGUE CARD REFINEMENT - PLAYFUL INTERACTIVITY */
         .mineral-card-premium {
             background: #ffffff;
             border: 1px solid #eef2f6;
-            border-radius: 24px;
-            padding: 40px;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            border-radius: 32px;
+            padding: 32px;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             height: 100%;
+            cursor: pointer;
         }
         
         .mineral-card-premium:hover {
-            transform: translateY(-10px);
+            transform: translateY(-12px) scale(1.02);
             border-color: var(--accent-gold-light);
-            box-shadow: 0 30px 60px -15px rgba(142, 110, 60, 0.12);
-        }
-        
-        .mineral-card-premium::after {
-            content: "";
-            position: absolute;
-            bottom: 0; left: 0; width: 0; height: 3px;
-            background: var(--accent-gold);
-            transition: width 0.6s ease;
-        }
-        
-        .mineral-card-premium:hover::after {
-            width: 100%;
+            box-shadow: 0 40px 80px -20px rgba(142, 110, 60, 0.18);
         }
 
         .card-data-grid {
@@ -489,7 +478,7 @@
                                     <p class="text-[#af9655] text-[10px] font-black uppercase mb-3 tracking-[0.2em]">Mica Minerals</p>
                                     <ul class="space-y-3 mb-6 border-b border-white/5 pb-4">
                                         <li><a href="javascript:void(0)" onclick="showPage('product-muscovite')" class="text-white/70 hover:text-white transition-colors text-[13px] font-medium tracking-wide">Muscovite Mica</a></li>
-                                        <li><a href="javascript:void(0)" class="text-white/70 hover:text-white transition-colors text-[13px] font-medium tracking-wide">Biotite Mica</a></li>
+                                        <li><a href="javascript:void(0)" onclick="showPage('product-biotite')" class="text-white/70 hover:text-white transition-colors text-[13px] font-medium tracking-wide">Biotite Mica</a></li>
                                     </ul>
                                     <p class="text-[#af9655] text-[10px] font-black uppercase mb-3 tracking-[0.2em]">Industrial Ores</p>
                                     <ul class="space-y-3">
@@ -532,7 +521,7 @@
 
     <!-- MAIN HOME WRAPPER -->
     <div id="main-wrapper" class="page-wrapper">
-        <!-- Hero Section: CLEAN DIRECT STRUCTURE -->
+        <!-- Hero Section -->
         <section id="home" class="carousel-container bg-black">
             <!-- Slide 1 -->
             <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1515516089376-88db1e26e9c0?auto=format&fit=crop&w=1920&q=80');">
@@ -590,7 +579,7 @@
             </div>
         </section>
 
-        <!-- High-Performance Ribbon (Automated Numbers) -->
+        <!-- High-Performance Ribbon -->
         <section id="record" class="metrics-ribbon reveal">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                 <div class="metric-item">
@@ -625,7 +614,7 @@
         </section>
 
         <!-- Brief About Section -->
-        <section id="about" class="py-12 sm:py-24 bg-white mineral-texture-light reveal">
+        <section id="about" class="pt-12 sm:pt-24 pb-6 sm:pb-8 bg-white mineral-texture-light reveal">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
                     <div class="lg:w-1/2 order-2 lg:order-1 pt-6">
@@ -697,100 +686,72 @@
             </div>
         </section>
 
-        <!-- Redesigned Industrial Catalogue Index -->
-        <section id="products" class="py-16 sm:py-24 bg-slate-50 mineral-texture-light reveal">
+        <!-- Industrial Catalogue Index - ENHANCED SQUARE TILES -->
+        <section id="products" class="pt-2 sm:pt-4 pb-16 sm:pb-24 bg-slate-50 mineral-texture-light reveal">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-4xl mx-auto mb-20">
+                <div class="text-center max-w-4xl mx-auto mb-16">
                     <h2 class="text-[#af9655] font-black uppercase tracking-[0.6em] text-[10px] mb-6">Technical Trading Sourcing</h2>
                     <h3 class="heading-font text-4xl sm:text-6xl text-slate-900 mb-8 tracking-tight leading-tight">Premium Industrial <br>Mineral Portfolio</h3>
                 </div>
                 
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Muscovite Mica Card -->
-                    <div class="mineral-card-premium reveal reveal-delay-1 cursor-pointer group" onclick="showPage('product-muscovite')">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-[#af9655] text-2xl shadow-xl transition-transform group-hover:rotate-6 duration-500">
-                                <i class="fa-solid fa-dice-d20"></i>
-                            </div>
-                            <span class="text-[10px] font-black text-slate-300 uppercase tracking-widest">Grade 1-A</span>
+                    <div class="mineral-card-premium reveal reveal-delay-1 group" onclick="showPage('product-muscovite')">
+                        <!-- Square/Landscape Impact Container -->
+                        <div class="w-full aspect-[4/3] bg-slate-100 rounded-2xl mb-8 overflow-hidden border border-slate-200/50">
+                            <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=600&q=80" alt="Muscovite Mica Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         </div>
-                        <h4 class="font-black uppercase tracking-wider text-lg mb-2 text-slate-900">Muscovite Mica</h4>
-                        <p class="text-slate-500 text-xs leading-relaxed mb-4">Ultra-high thermal resistance with superior dielectric strength.</p>
+                        <h4 class="font-black uppercase tracking-wider text-xl mb-3 text-slate-900">Muscovite Mica</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed mb-6">Ultra-high thermal resistance with superior dielectric strength.</p>
                         
-                        <div class="card-data-grid">
-                            <div class="data-point"><span>Purity</span><span>99.2% min</span></div>
-                            <div class="data-point"><span>Mesh</span><span>325 - 5000</span></div>
-                        </div>
-                        
-                        <div class="mt-auto flex items-center justify-between">
+                        <div class="mt-auto flex items-center justify-between pt-6 border-t border-slate-100">
                             <div class="text-[#af9655] text-[10px] font-black uppercase tracking-widest">Sourcing Specs</div>
-                            <i class="fa-solid fa-arrow-right-long text-[#af9655] group-hover:translate-x-2 transition-transform duration-500"></i>
+                            <i class="fa-solid fa-arrow-right-long text-[#af9655] group-hover:translate-x-3 transition-transform duration-500"></i>
                         </div>
                     </div>
 
                     <!-- Potash Feldspar Card -->
-                    <div class="mineral-card-premium reveal reveal-delay-2 cursor-pointer group" onclick="showPage('product-feldspar')">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-[#af9655] text-2xl shadow-xl transition-transform group-hover:rotate-6 duration-500">
-                                <i class="fa-solid fa-industry"></i>
-                            </div>
-                            <span class="text-[10px] font-black text-slate-300 uppercase tracking-widest">Flux Grade</span>
+                    <div class="mineral-card-premium reveal reveal-delay-2 group" onclick="showPage('product-feldspar')">
+                        <!-- Square/Landscape Impact Container -->
+                        <div class="w-full aspect-[4/3] bg-slate-100 rounded-2xl mb-8 overflow-hidden border border-slate-200/50">
+                            <img src="https://images.unsplash.com/photo-1515516089376-88db1e26e9c0?auto=format&fit=crop&w=600&q=80" alt="Potash Feldspar Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         </div>
-                        <h4 class="font-black uppercase tracking-wider text-lg mb-2 text-slate-900">Potash Feldspar</h4>
-                        <p class="text-slate-500 text-xs leading-relaxed mb-4">Precision alkali ratio for high-end ceramics and vitrification.</p>
+                        <h4 class="font-black uppercase tracking-wider text-xl mb-3 text-slate-900">Potash Feldspar</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed mb-6">Precision alkali ratio for high-end ceramics and vitrification.</p>
                         
-                        <div class="card-data-grid">
-                            <div class="data-point"><span>K2O</span><span>11.5% min</span></div>
-                            <div class="data-point"><span>Fe2O3</span><span>0.05% max</span></div>
-                        </div>
-                        
-                        <div class="mt-auto flex items-center justify-between">
+                        <div class="mt-auto flex items-center justify-between pt-6 border-t border-slate-100">
                             <div class="text-[#af9655] text-[10px] font-black uppercase tracking-widest">Analysis Report</div>
-                            <i class="fa-solid fa-arrow-right-long text-[#af9655] group-hover:translate-x-2 transition-transform duration-500"></i>
+                            <i class="fa-solid fa-arrow-right-long text-[#af9655] group-hover:translate-x-3 transition-transform duration-500"></i>
                         </div>
                     </div>
 
                     <!-- Biotite Mica Card -->
-                    <div class="mineral-card-premium reveal reveal-delay-3 cursor-pointer group" onclick="showPage('product-biotite')">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-[#af9655] text-2xl shadow-xl transition-transform group-hover:rotate-6 duration-500">
-                                <i class="fa-solid fa-layer-group"></i>
-                            </div>
-                            <span class="text-[10px] font-black text-slate-300 uppercase tracking-widest">Shield Grade</span>
+                    <div class="mineral-card-premium reveal reveal-delay-3 group" onclick="showPage('product-biotite')">
+                        <!-- Square/Landscape Impact Container -->
+                        <div class="w-full aspect-[4/3] bg-slate-100 rounded-2xl mb-8 overflow-hidden border border-slate-200/50">
+                            <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=600&q=80" alt="Biotite Mica Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         </div>
-                        <h4 class="font-black uppercase tracking-wider text-lg mb-2 text-slate-900">Biotite Mica</h4>
-                        <p class="text-slate-500 text-xs leading-relaxed mb-4">Iron-rich structural shielding for specialized coatings.</p>
+                        <h4 class="font-black uppercase tracking-wider text-xl mb-3 text-slate-900">Biotite Mica</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed mb-6">Iron-rich structural shielding for specialized coatings.</p>
                         
-                        <div class="card-data-grid">
-                            <div class="data-point"><span>MgO</span><span>12.8% avg</span></div>
-                            <div class="data-point"><span>Loss</span><span>1.5% max</span></div>
-                        </div>
-                        
-                        <div class="mt-auto flex items-center justify-between">
+                        <div class="mt-auto flex items-center justify-between pt-6 border-t border-slate-100">
                             <div class="text-[#af9655] text-[10px] font-black uppercase tracking-widest">Technical Hub</div>
-                            <i class="fa-solid fa-arrow-right-long text-[#af9655] group-hover:translate-x-2 transition-transform duration-500"></i>
+                            <i class="fa-solid fa-arrow-right-long text-[#af9655] group-hover:translate-x-3 transition-transform duration-500"></i>
                         </div>
                     </div>
 
                     <!-- Industrial Talc Card -->
-                    <div class="mineral-card-premium reveal reveal-delay-4 cursor-pointer group" onclick="showPage('product-talc')">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-[#af9655] text-2xl shadow-xl transition-transform group-hover:rotate-6 duration-500">
-                                <i class="fa-solid fa-vial-circle-check"></i>
-                            </div>
-                            <span class="text-[10px] font-black text-slate-300 uppercase tracking-widest">Polymer Grade</span>
+                    <div class="mineral-card-premium reveal reveal-delay-4 group" onclick="showPage('product-talc')">
+                        <!-- Square/Landscape Impact Container -->
+                        <div class="w-full aspect-[4/3] bg-slate-100 rounded-2xl mb-8 overflow-hidden border border-slate-200/50">
+                            <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=600&q=80" alt="Industrial Talc Product" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         </div>
-                        <h4 class="font-black uppercase tracking-wider text-lg mb-2 text-slate-900">Industrial Talc</h4>
-                        <p class="text-slate-500 text-xs leading-relaxed mb-4">Micronized brightness with controlled oil absorption.</p>
+                        <h4 class="font-black uppercase tracking-wider text-xl mb-3 text-slate-900">Industrial Talc</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed mb-6">Micronized brightness with controlled oil absorption.</p>
                         
-                        <div class="card-data-grid">
-                            <div class="data-point"><span>Whiteness</span><span>96% min</span></div>
-                            <div class="data-point"><span>pH slurry</span><span>8.5 - 9.5</span></div>
-                        </div>
-                        
-                        <div class="mt-auto flex items-center justify-between">
+                        <div class="mt-auto flex items-center justify-between pt-6 border-t border-slate-100">
                             <div class="text-[#af9655] text-[10px] font-black uppercase tracking-widest">Get TDS/MSDS</div>
-                            <i class="fa-solid fa-arrow-right-long text-[#af9655] group-hover:translate-x-2 transition-transform duration-500"></i>
+                            <i class="fa-solid fa-arrow-right-long text-[#af9655] group-hover:translate-x-3 transition-transform duration-500"></i>
                         </div>
                     </div>
                 </div>
@@ -1151,6 +1112,70 @@
                     </tbody>
                 </table>
                 <div class="mt-20 text-center"><button onclick="showPage('main-wrapper', 'contact')" class="btn-gold px-16 py-7 shadow-3xl uppercase tracking-widest text-sm">Initiate Sourcing Inquiry</button></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PRODUCT VIEW: BIOTITE MICA -->
+    <div id="product-biotite" class="page-wrapper page-hidden min-h-screen bg-white pt-24 reveal">
+        <section class="py-12 sm:py-24 bg-slate-50 border-b border-slate-100 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <button onclick="showPage('main-wrapper')" class="mb-10 inline-flex items-center gap-4 text-[#af9655] font-bold text-[11px] tracking-[0.2em] hover:text-slate-900 transition-colors"><i class="fa-solid fa-arrow-left-long"></i> Back to portal</button>
+                <div class="flex flex-col lg:flex-row gap-16 items-center">
+                    <div class="lg:w-1/2">
+                        <h1 class="heading-font text-4xl sm:text-6xl text-slate-900 mb-4 tracking-tighter leading-tight">Industrial Grade Biotite Mica.</h1>
+                        <div class="h-1.5 w-24 bg-[#af9655] mb-10 rounded-full"></div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-[#af9655] mb-6 tracking-tight">Iron-rich mica optimized for structural shielding and protective coatings.</h2>
+                        <p class="text-slate-600 text-lg font-light leading-relaxed mb-10">Biotite, often referred to as 'Black Mica', is characterized by its significant iron and magnesium content. It offers exceptional UV protection and chemical stability, making it indispensable for high-performance industrial formulations.</p>
+                        <a href="javascript:void(0)" onclick="showPage('main-wrapper', 'contact')" class="btn-gold px-12 py-5 inline-block uppercase text-xs tracking-widest shadow-xl">Request TDS Analysis</a>
+                    </div>
+                    <div class="lg:w-1/2 relative group">
+                        <div class="absolute -inset-4 bg-[#af9655]/10 rounded-3xl blur-2xl"></div>
+                        <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=800&q=80" alt="Biotite Mica" class="relative rounded-[48px] shadow-3xl border-8 border-white object-cover h-[400px] sm:h-[500px] w-full">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-28 bg-white reveal">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-20"><h2 class="text-[#af9655] font-black uppercase tracking-[0.5em] text-[12px] mb-6">Technical utility</h2><h3 class="heading-font text-4xl sm:text-5xl text-slate-900 tracking-tight uppercase">Industrial application used</h3></div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="app-card-premium reveal reveal-delay-1 group">
+                        <div class="app-card-img-wrapper"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&get=80" alt="Shielding"></div>
+                        <div class="app-overlay-content"><h4>Shielding</h4><p>Radiation and heat shielding for specialized aerospace housings.</p></div>
+                    </div>
+                    <div class="app-card-premium reveal reveal-delay-2 group">
+                        <div class="app-card-img-wrapper"><img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=600&get=80" alt="UV Coatings"></div>
+                        <div class="app-overlay-content"><h4>UV Coatings</h4><p>Providing iron-oxide pigmentation for extreme UV resistance in paints.</p></div>
+                    </div>
+                    <div class="app-card-premium reveal reveal-delay-3 group">
+                        <div class="app-card-img-wrapper"><img src="https://images.unsplash.com/photo-1503596476-1c12a8ba09a9?auto=format&fit=crop&w=600&get=80" alt="Oil & Gas"></div>
+                        <div class="app-overlay-content"><h4>Oil & Gas</h4><p>High-purity additive for drilling fluids to prevent fluid loss.</p></div>
+                    </div>
+                    <div class="app-card-premium reveal reveal-delay-4 group">
+                        <div class="app-card-img-wrapper"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&get=80" alt="Lubricants"></div>
+                        <div class="app-overlay-content"><h4>Lubricants</h4><p>Anti-friction agent for heavy-duty industrial rubber and lubricants.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-28 bg-slate-50 border-y border-slate-100 reveal">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16"><h3 class="heading-font text-3xl sm:text-5xl text-slate-900 tracking-tighter uppercase">Technical Specification</h3></div>
+                <table class="tech-spec-table bg-white shadow-3xl">
+                    <thead><tr><th>Technical Property</th><th>Standard Reference</th></tr></thead>
+                    <tbody>
+                        <tr><td>Chemical Formula</td><td class="font-bold text-slate-900">K(Mg, Fe)₃(AlSi₃O₁₀)(OH)₂</td></tr>
+                        <tr><td>Appearance</td><td>Dark Brown to Deep Black flakes / powder</td></tr>
+                        <tr><td>Specific Gravity</td><td>2.70 – 3.30 High Density</td></tr>
+                        <tr><td>Mohs Hardness</td><td>2.5 – 3.0 Standard</td></tr>
+                        <tr><td>pH (10% slurry)</td><td>8.0 ± 1.0 Alkaline Stability</td></tr>
+                        <tr><td>Bulk Density</td><td>0.7 – 1.1 g/cm³</td></tr>
+                    </tbody>
+                </table>
+                <div class="mt-20 text-center"><button onclick="showPage('main-wrapper', 'contact')" class="btn-gold px-16 py-7 shadow-3xl uppercase tracking-widest text-sm">Initiate Bulk Sourcing</button></div>
             </div>
         </section>
     </div>
